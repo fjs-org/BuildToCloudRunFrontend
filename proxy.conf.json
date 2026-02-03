@@ -1,0 +1,11 @@
+{
+  "/api": {
+    "target": "https://buildtocloudrun-129285069564.europe-west1.run.app",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/api": ""  
+    }
+  }
+}

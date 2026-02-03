@@ -1,0 +1,25 @@
+button {
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: transform 0.1s, background-color 0.2s;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Primary Submit Button */
+button[type="submit"] {
+  background-color: #4a90e2;
+  color: white;
+  flex: 2;
+}
+
+button[type="submit"]:hover {
+  background-color: #357abd;
+}
+

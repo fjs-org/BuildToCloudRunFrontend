@@ -1,0 +1,16 @@
+<div style="padding: 20px; font-family: sans-serif;">
+    <h3>Cloud Run API Call</h3>
+      
+    <div style="border: 1px solid #ccc; padding: 10px; border-radius: 4px;">
+
+    @if (loading()) {
+        <p><strong>Connecting to Cloud Run...</strong></p>
+      } @else if (errorMessage()) {
+        <p style="color: red;">Error: {{ errorMessage() }}</p>
+      } @else {
+        <p><strong>Response:</strong> {{ message() }}</p>
+      }
+    </div>
+
+    <button type="submit" (click)="fetchData()" [disabled]="loading()" style="margin-top: 10px;">Refresh Data</button>
+</div>
