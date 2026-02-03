@@ -9,14 +9,15 @@ RUN npm install
 # Copy source and build
 COPY . .
 RUN npm run build -- --configuration=production
+RUN ls -lart
 
 # Stage 2: Serve with Nginx
 FROM nginx:alpine
 
 # Copy the build output to Nginx's html folder
 # Replace 'your-app-name' with the name found in your angular.json
-RUN ls -lart
-COPY --from=build /dist/angular-firebase/browser /usr/share/nginx/html
+
+COPY --from=build /app/dist/angular-firebase/browser /usr/share/nginx/html
 
 # Copy custom Nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
