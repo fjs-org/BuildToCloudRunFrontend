@@ -15,7 +15,8 @@ FROM nginx:alpine
 
 # Copy the build output to Nginx's html folder
 # Replace 'your-app-name' with the name found in your angular.json
-RUN -ls -lart /app/dist
+RUN -ls -lart
+RUN -ls -lart dist
 COPY --from=build /dist/angular-firebase/browser /usr/share/nginx/html
 
 # Copy custom Nginx configuration
