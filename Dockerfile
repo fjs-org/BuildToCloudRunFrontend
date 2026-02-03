@@ -22,6 +22,3 @@ COPY --from=build /app/dist/angular-firebase/browser /usr/share/nginx/html
 # Copy custom Nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
