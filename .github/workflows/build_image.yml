@@ -1,0 +1,42 @@
+name: Docker build and push
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: List files after checkout
+        run: ls -lart
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v3
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_PROVIDER }}
+          service_account: ${{ secrets.GCP_SA_EMAIL }}
+
+      - name: Set up gcloud CLI
+        uses: google-github-actions/setup-gcloud@v1
+
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker europe-west3-docker.pkg.dev
+
+      - name: Build and Push Docker image
+        run: |
+          IMAGE_URI="europe-west3-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/fj-image-repo/buildtocloudrunfrontend:latest"
+          docker build -t "$IMAGE_URI" .
+          docker images
+          docker push "$IMAGE_URI"
