@@ -15,7 +15,8 @@ FROM nginx:alpine
 
 # Copy the build output to Nginx's html folder
 # Replace 'your-app-name' with the name found in your angular.json
-COPY --from=build /app/dist/your-app-name/browser /usr/share/nginx/html
+RUN -ls -lart /app/dist
+COPY --from=build /app/dist/firebase-auth-with-java-backend/browser /usr/share/nginx/html
 
 # Copy custom Nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
