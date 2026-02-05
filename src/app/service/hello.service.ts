@@ -11,4 +11,5 @@ export class HelloService {
     // We use responseType: 'text' if the API returns a simple string
     return this.http.get(this.url, { responseType: 'text' });
   }
+
 }

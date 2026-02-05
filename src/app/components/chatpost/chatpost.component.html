@@ -1,0 +1,32 @@
+<section class="chat-container" aria-label="Chat History">
+  <ul class="message-list" aria-live="polite">
+    @for (post of chatPosts(); track post.id) {
+      <li class="message-item">
+        <article [class.sent-by-me]="post.isCurrentUser">
+          <header>
+            <span class="author">{{ post.from }}</span>
+            <time [attr.datetime]="post.timestamp">{{ post.timestamp }}</time>
+          </header>
+          <p class="message-body">
+            {{ post.message }}
+          </p>
+        </article>
+      </li>
+    } @empty {
+      <li class="no-messages">No messages yet. Start the conversation!</li>
+    }
+  </ul>
+
+</section>
+
+<div class="input-container">
+  <input type="text" #messageInput placeholder="Type your message here...">
+  
+  <button (click)="sendMessage(messageInput.value); messageInput.value=''">
+    Send Message
+  </button>
+</div>
+
+
+
+

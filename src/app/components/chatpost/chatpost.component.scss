@@ -1,0 +1,52 @@
+/* Container handles the scroll */
+.message-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  padding: 20px;
+  height: 400px; /* Or use flex-grow: 1 */
+  overflow-y: auto;
+}
+
+/* Base bubble styling */
+article {
+  max-width: 70%;
+  padding: 10px 14px;
+  border-radius: 18px;
+  font-family: sans-serif;
+  line-height: 1.4;
+  position: relative;
+}
+
+/* Messages from others (Left side) */
+.message-item {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.message-item article {
+  background-color: #f0f0f0;
+  color: #333;
+  border-bottom-left-radius: 4px; /* Distinctive bubble tail */
+}
+
+/* Messages from you (Right side) */
+.message-item.sent-by-me {
+  justify-content: flex-end;
+}
+
+.message-item.sent-by-me article {
+  background-color: #007aff; /* Classic blue */
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+/* Metadata (Time and Name) */
+header {
+  display: flex;
+  font-size: 0.75rem;
+  margin-bottom: 4px;
+  opacity: 0.7;
+  gap: 8px;
+}

@@ -1,6 +1,10 @@
 import { Component, signal, inject} from '@angular/core';
 import { HelloService } from '../../service/hello.service';
 
+interface LoggedInUser {
+  message: string;
+}
+
 @Component({
   selector: 'hello-component',
   imports: [],
@@ -10,7 +14,7 @@ import { HelloService } from '../../service/hello.service';
 export class HelloComponent {
 private helloService = inject(HelloService);
 
-  message = signal<string>('');
+  message = signal<LoggedInUser>({ message: '' });
   loading = signal<boolean>(false);
   errorMessage = signal<string | null>(null);
 
@@ -24,7 +28,8 @@ private helloService = inject(HelloService);
 
     this.helloService.getHello().subscribe({
       next: (val) => {
-        this.message.set(val);
+        const parsedData: LoggedInUser = JSON.parse(val);
+        this.message.set(parsedData);
         this.loading.set(false);
       },
       error: (err) => {
