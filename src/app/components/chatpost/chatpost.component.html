@@ -19,10 +19,10 @@
 
 </section>
 
-<div class="input-container">
-  <input type="text" #messageInput placeholder="Type your message here...">
+<div class="message-container">
+  <input type="text" #messageInput class="message-input" placeholder="Type your message here...">
   
-  <button (click)="sendMessage(messageInput.value); messageInput.value=''">
+  <button class="send-button" (click)="sendMessage(messageInput.value); messageInput.value=''">
     Send Message
   </button>
 </div>

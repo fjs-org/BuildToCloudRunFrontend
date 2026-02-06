@@ -1,14 +1,14 @@
-<div style="padding: 20px; font-family: sans-serif;">      
-    <div style="border: 1px solid #ccc; padding: 10px; border-radius: 4px;">
-
+<div class="message-container">      
     @if (loading()) {
-        <p><strong>Connecting to Cloud Run...</strong></p>
-      } @else if (errorMessage()) {
-        <p style="color: red;">Error: {{ errorMessage() }}</p>
-      } @else {
-        <p><strong>Logged in as: </strong> {{ message().message }}</p>
-      }
-    </div>
-
-    <!--button type="submit" (click)="fetchData()" [disabled]="loading()" style="margin-top: 10px;">Refresh Data</button-->
-</div>
+      <p class="loading-text">
+        <strong>Connecting to Cloud Run...</strong>
+      </p>
+    } @else if (errorMessage()) {
+      <p class="error-text">
+        <strong>Error:</strong> {{ errorMessage() }}
+      </p>
+    } @else {
+      <p>
+        <strong>Logged in as: </strong>{{ message().message }}
+      </p>
+    }

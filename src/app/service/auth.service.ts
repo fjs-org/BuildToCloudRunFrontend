@@ -4,7 +4,7 @@ import {
   browserSessionPersistence,
   GoogleAuthProvider,
   signInWithEmailAndPassword,
-  signInWithPopup,
+  signInWithPopup,  
   signOut,
   user,
   User,
@@ -42,7 +42,6 @@ export class AuthService {
     const provider = new GoogleAuthProvider();
     try {
       const result = await signInWithPopup(this.firebaseAuth, provider);
-      const user = result.user;
       if (!user) {
         throw new Error('Google-Login error');
       }

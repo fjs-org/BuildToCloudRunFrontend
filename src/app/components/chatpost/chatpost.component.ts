@@ -43,7 +43,7 @@ constructor() {}
 
   private startPolling() {
     console.info('Starting polling for new chat posts...');
-      this.pollingSub = interval(3000) // Trigger every 2000ms
+      this.pollingSub = interval(3000)
         .pipe(
           startWith(5), // Trigger immediately on load
           switchMap(() => this.chatPostService.getChatPostsLongPoll())
