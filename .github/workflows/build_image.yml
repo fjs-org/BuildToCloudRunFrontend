@@ -41,7 +41,3 @@ jobs:
           docker build -t "$IMAGE_URI" .
           docker images
           docker push "$IMAGE_URI"
-
-          gcloud run deploy buildtocloudrunfrontend \
-          --image "$IMAGE_URI" \
-          --region europe-west3
