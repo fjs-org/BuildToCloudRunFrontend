@@ -57,4 +57,13 @@ export class AuthService {
     });
     return from(promise);
   }
+
+  getCurrentDisplayName(): string | null {
+    return this.firebaseAuth.currentUser?.displayName || null;
+  }
+
+  getCurrentUsersEmail(): string | null {
+    return this.firebaseAuth.currentUser?.email || null;
+  }
+
 }
