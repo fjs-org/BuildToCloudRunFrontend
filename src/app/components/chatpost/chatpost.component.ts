@@ -37,7 +37,7 @@ constructor() {}
           // Parse the string into the expected ChatPost array
           const parsedData: ChatPost[] = JSON.parse(val);
           parsedData.map(post => {
-            post.isCurrentUser = post.from === this.authService.getCurrentUsersEmail(); // Example logic
+            post.isCurrentUser = post.from === this.authService.getCurrentUsersEmail();
           });
           this.chatPosts.set(parsedData); 
         },
@@ -58,7 +58,7 @@ constructor() {}
             // Only update signal if data actually changed to prevent unnecessary re-renders
             if (JSON.stringify(this.chatPosts()) !== JSON.stringify(parsedData)) {  
               parsedData.map(post => {
-                post.isCurrentUser = post.from === this.authService.getCurrentUsersEmail(); // Example logic
+                post.isCurrentUser = post.from === this.authService.getCurrentUsersEmail();
               });
 
               this.chatPosts.set(parsedData);

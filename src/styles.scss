@@ -114,7 +114,6 @@ button:not([type="submit"]):not(.google-btn) {
   gap: 12px;
   list-style: none;
   padding: 20px;
-  height: 400px; /* Or use flex-grow: 1 */
   overflow-y: auto;
 }
 
@@ -160,17 +159,6 @@ header {
   gap: 8px;
 }
 
-/* Container styling */
-.message-container {
-  display: flex;
-  gap: 10px;
-  padding: 15px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e0e0e0;
-  max-width: 500px;
-}
 
 /* Input field styling */
 .message-input {
@@ -236,7 +224,6 @@ button[type="submit"]:hover {
   background-color: #357abd;
 }
 
-
 /* Container styling */
 .message-container {
   display: flex;
@@ -246,13 +233,11 @@ button[type="submit"]:hover {
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   border: 1px solid #e0e0e0;
-  max-width: 500px;
+  font-family: sans-serif
 }
 
-
-
 .chat-container {
-  max-width: 600px;
+
   margin: 0 auto;
   padding: 1rem;
 
