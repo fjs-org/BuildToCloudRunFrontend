@@ -47,7 +47,6 @@ export class LoginComponent {
   async onGoogleSignIn(): Promise<void> {
     try {
       await this.authService.googleLogin();
-      //this.router.navigateByUrl('/main');
         this.router.navigateByUrl('/protected-content');
 
     } catch (error) {

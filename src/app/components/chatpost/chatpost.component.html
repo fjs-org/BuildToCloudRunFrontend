@@ -25,7 +25,7 @@
 <div class="message-container">
   <input type="text" #messageInput class="message-input" placeholder="Type your message here...">
   
-  <button class="send-button" (click)="sendMessage(messageInput.value); messageInput.value=''">
+  <button type="button" class="send-button" (click)="sendMessage(messageInput.value); messageInput.value=''">
     Send Message
   </button>
 </div>

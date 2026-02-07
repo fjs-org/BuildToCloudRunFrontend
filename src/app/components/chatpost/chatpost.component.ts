@@ -72,10 +72,18 @@ constructor() {}
     const trimmedMessage = message.trim();
     if (!trimmedMessage) return;
 
+    const newPost: ChatPost = {
+      id: 0,
+      from: "",
+      message: trimmedMessage,
+      timestamp: new Date().toISOString(),
+      isCurrentUser: true
+    };
+    this.chatPosts.update(posts => [...posts, newPost]);
+
     this.chatPostService.sendChatPost(message).subscribe({
       next: (savedPost) => {
-          this.chatPosts.update(posts => [...posts, savedPost]);
-        console.info('Post done', savedPost)
+          console.info('Post done', savedPost)
       },
       error: (err) => console.error('Failed to send message', err)
     });
