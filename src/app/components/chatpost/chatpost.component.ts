@@ -1,18 +1,20 @@
-import { Component, OnInit, signal, inject } from '@angular/core';
+import { Component, OnInit, signal, inject, ElementRef, ViewChild, effect  } from '@angular/core';
 import { ChatPostService } from '../../service/chatpost.service';
 import { interval, Subscription, switchMap, startWith } from 'rxjs';
 import { AuthService } from '../../service/auth.service';
+import { DatePipe } from '@angular/common';
 
 interface ChatPost {
   id: number;
   from: string;
   message: string;
-  timestamp: string;
+  timestamp: Date;
   isCurrentUser: boolean;
 }
 
 @Component({
   selector: 'chat-post-component',
+  imports: [DatePipe],
   templateUrl: './chatpost.component.html',
   styleUrls: ['./chatpost.component.scss']
 })
@@ -24,7 +26,23 @@ export class ChatPostComponent implements OnInit {
 
   private pollingSub?: Subscription;
 
-constructor() {}
+  @ViewChild('scrollContainer') scrollContainer!: ElementRef;
+
+  constructor() {
+    effect(() => {
+          // This triggers every time chatPosts() updates
+          this.chatPosts(); 
+          this.scrollToBottom();
+        });
+
+  }
+
+  private scrollToBottom() {
+    setTimeout(() => {
+      const el = this.scrollContainer.nativeElement;
+      el.scrollTop = el.scrollHeight;
+    }, 0); // setTimeout ensures the DOM has rendered the new <li>
+  }
 
   ngOnInit(): void {
     this.loadInitialMessages();
@@ -74,9 +92,9 @@ constructor() {}
 
     const newPost: ChatPost = {
       id: 0,
-      from: "",
+      from: this.authService.getCurrentUsersEmail() || 'Unknown',
       message: trimmedMessage,
-      timestamp: new Date().toISOString(),
+      timestamp: new Date(),
       isCurrentUser: true
     };
     this.chatPosts.update(posts => [...posts, newPost]);
